@@ -12,3 +12,6 @@ The STL models used in this project were acquired from:
 1.	3DBenchy - https://www.thingiverse.com/thing:763622
 2.	Pikachu - https://www.thingiverse.com/thing:376601
 3.	Pug - https://www.thingiverse.com/thing:2629132/files
+The STL models are not part of this repository.
+
+To run the website it must be put on a server and you will need some stl models. 
