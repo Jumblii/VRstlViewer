@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STL model viewer</title>
+    
+    <script src="aframe\dist\aframe-master.js"></script>
+    <script src="aframe-stl-model-component-master/dist/aframe-stl-model-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <!--Creating an A-Frame Scene with physics enabled. Gravity set to 0
+      as the physics are used only for manipulating the models.-->
+      <a-scene physics="gravity: 0.0; debug: false;">
+        <!--Creating a set of assets and loading the STL models.-->
+        <a-assets>
+          <a-asset-item 
+            response-type="arraybuffer" 
+            id="benchySTL" 
+            src="assets/3DBenchy.stl"
+          ></a-asset-item>
+          <a-asset-item 
+            response-type="arraybuffer" 
+            id="pikachuSTL" 
+            src="assets/pikachu.stl"
+          ></a-asset-item>
+          <a-asset-item 
+            response-type="arraybuffer" 
+            id="pugSTL" 
+            src="assets/pug.stl"
+          ></a-asset-item>
+          <!--Creating a-mixin asset to make creation of the models in VR easier.
+            Shared components are bundled together.-->      
+          <a-mixin 
+            id="movable" 
+            hoverable
+            draggable="startButtons: triggerdown; endButtons: triggerup"
+            droppable
+            grabbable="startButtons: triggerdown; endButtons: triggerup"
+            stretchable="startButtons: gripdown; endButtons: gripup"
+            dynamic-body="shape: sphere; sphereRadius: 0.02;"
+          ></a-mixin>
+        </a-assets>
+        <!--Two entities are created to be the user's hands/controllers.
+            They can interact with objects of class movable.-->
+        <a-entity 
+          sphere-collider="objects: .movable" 
+          super-hands 
+          static-body="shape: sphere; sphereRadius: 0.02"
+          hand-controls="hand: left"
+        ></a-entity>
+
+        <a-entity 
+          sphere-collider="objects: .movable" 
+          super-hands 
+          static-body="shape: sphere; sphereRadius: 0.02"
+          hand-controls="hand: right"
+        ></a-entity>
+       <!--The three buttons are created.-->
+        <a-box
+          red
+          class="movable"
+          material="color:#800000"
+          position="-0.3 1.4 -0.2"
+          scale="0.05 0.05 0.05"
+        ></a-box>
+
+        <a-box
+          yellow
+          class="movable"
+          material="color:#ffc100"
+          position="0 1.4 -0.4"
+          scale="0.05 0.05 0.05"
+        ></a-box>
+
+        <a-box
+          green
+          class="movable"
+          material="color:#008000"
+          position="0.3 1.4 -0.2"
+          scale="0.05 0.05 0.05"
+        ></a-box>
+
+        <a-sky
+              color="#071330"
+        ></a-sky>  
+        
+      </a-scene>
+  </body>
+</html>

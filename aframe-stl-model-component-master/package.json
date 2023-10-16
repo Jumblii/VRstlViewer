@@ -1,0 +1,53 @@
+{
+  "name": "aframe-stl-model-component",
+  "version": "0.1.0",
+  "description": "A STL files component for A-Frame.",
+  "main": "index.js",
+  "unpkg": "dist/aframe-stl-model-component.min.js",
+  "scripts": {
+    "dev": "budo index.js:dist/aframe-stl-model-component.min.js --port 7000 --live --open",
+    "dist": "webpack --config webpack.unminified.config.js && webpack --define process.env.NODE_ENV=\"production\"",
+    "lint": "semistandard -v | snazzy",
+    "prepublish": "npm run dist",
+    "ghpages": "ghpages",
+    "start": "npm run dev",
+    "test": "karma start ./tests/karma.conf.js",
+    "test:firefox": "karma start ./tests/karma.conf.js --browsers Firefox",
+    "test:chrome": "karma start ./tests/karma.conf.js --browsers Chrome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkwave/aframe-stl-model-component.git"
+  },
+  "keywords": [
+    "aframe",
+    "aframe-component",
+    "aframe-vr",
+    "vr",
+    "mozvr",
+    "webvr",
+    "stl-model"
+  ],
+  "author": "Massimo Avvisati <massimo.avvisati@codemotion.it>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/darkwave/aframe-stl-model-component/issues"
+  },
+  "homepage": "https://github.com/darkwave/aframe-stl-model-component#readme",
+  "devDependencies": {
+    "aframe": "*",
+    "uglifyjs-webpack-plugin": "latest",
+    "webpack": "latest",
+    "budo": "latest"
+  },
+  "semistandard": {
+    "globals": [
+      "AFRAME",
+      "THREE"
+    ],
+    "ignore": [
+      "examples/build.js",
+      "dist/**"
+    ]
+  }
+}
